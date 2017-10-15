@@ -1,17 +1,17 @@
 package main.java.model;
 
 public class Board {
-    public Board(GameMode mode) {
+    public Board(main.java.model.GameMode mode) {
         initField(mode);
     }
-    private Stone[][] field;
+    private main.java.model.Stone[][] field;
 
-    private void initField(GameMode mode) {
-        if(mode==null) mode=GameMode.getDefault();
-        this.field = new Stone[mode.getLineCount()][mode.getLineCount()];
+    private void initField(main.java.model.GameMode mode) {
+        if(mode==null) mode= GameMode.getDefault();
+        this.field = new main.java.model.Stone[mode.getLineCount()][mode.getLineCount()];
     }
 
-    public Stone[][] getField() {
+    public main.java.model.Stone[][] getField() {
         return field;
     }
 

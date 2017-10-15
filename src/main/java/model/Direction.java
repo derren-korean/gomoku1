@@ -2,33 +2,43 @@ package main.java.model;
 
 public enum Direction {
 
-    UP("상",2)
-    ,LEFT("좌",4)
-    ,RIGHT("우",8)
-    ,DOWN("하",16)
-    ,LEFT_UP("좌상",32)
-    ,RIGHT_UP("우상",64)
-    ,LEFT_DOWN("좌하",128)
-    ,RIGHT_DOWN("우하",256)
-    ,CENTER("시작", 1);
+    UP("상",0,1)
+    ,LEFT("좌",-1,0)
+    ,RIGHT("우",1,0)
+    ,DOWN("하",0,-1)
+    ,LEFT_UP("좌상",-1,1)
+    ,RIGHT_UP("우상",1,1)
+    ,LEFT_DOWN("좌하",-1,-1)
+    ,RIGHT_DOWN("우하",1,-1)
+    ,CENTER("시작",0,0);
 
     private String location;
-    private Integer number;
+    private Integer x;
+    private Integer y;
 
     Direction() {
     }
 
-    Direction(String location, Integer number) {
+    Direction(String location, Integer x, Integer y) {
         this.location = location;
-        this.number = number;
+        this.x = x;
+        this.y = y;
     }
 
     public String getLocation() {
         return location;
     }
 
-    public Integer getNumber() {
-        return number;
+    private Integer getX() {
+        return x;
+    }
+
+    private Integer getY() {
+        return y;
+    }
+
+    public main.java.model.Point getPoint() {
+        return new Point(getX(), getY());
     }
 }
 

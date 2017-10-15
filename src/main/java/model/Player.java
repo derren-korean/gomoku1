@@ -1,11 +1,11 @@
 package main.java.model;
 
 public class Player {
-    private StoneColor color;
+    private main.java.model.StoneColor color;
 
     public Player() {}
 
-    public StoneColor getColor() {
+    public main.java.model.StoneColor getColor() {
         return color;
     }
 
