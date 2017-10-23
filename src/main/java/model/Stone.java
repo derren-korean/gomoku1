@@ -1,11 +1,11 @@
 package main.java.model;
 
 public class Stone {
-    public Stone(main.java.model.StoneColor color, Integer stoneCount) {
+    public Stone(StoneColor color, Integer stoneCount) {
         this.color = color;
         this.stoneCount = stoneCount;
     }
-    private main.java.model.StoneColor color;
+    private StoneColor color;
     private Integer stoneCount;
 
     public StoneColor getColor() {

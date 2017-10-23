@@ -5,9 +5,10 @@ import java.util.List;
 
 public class Game {
     private main.java.model.Board board;
-    private List<main.java.model.Point> recoder;
+    private List<Point> recoder;
     private Integer currentCount;
     private main.java.model.GameMode gameMode;
+    private Integer maxLineCount;
 
     public Game(main.java.model.GameMode gameMode) {
         initGame(gameMode);
@@ -19,6 +20,7 @@ public class Game {
         this.recoder = new ArrayList<>();
         if(mode==null) mode= main.java.model.GameMode.getDefault();
         this.gameMode = mode;
+        this.maxLineCount = mode.getLineCount()-1;
     }
 
     public Integer getCurrentCount() {
@@ -59,6 +61,10 @@ public class Game {
         incCount();
     }
 
+    public Integer getMaxLineCount() {
+        return maxLineCount;
+    }
+
     public void useStone(main.java.model.Point point, main.java.model.Stone stone) throws Exception {
         addStone(point, stone);
     }
@@ -83,4 +89,11 @@ public class Game {
         }
     }
 
+    public StoneColor getLocationColor(Point point) {
+        return getLocationStone(point) == null ? StoneColor.NONE : getLocationStone(point).getColor();
+    }
+
+    private Stone getLocationStone(Point point) {
+        return this.board.getField()[point.getX()] == null ? null : this.board.getField()[point.getX()][point.getY()];
+    }
 }

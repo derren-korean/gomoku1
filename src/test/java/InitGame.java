@@ -1,9 +1,13 @@
 package test.java;
 
 import main.java.model.*;
+import main.java.util.GomokuUtil;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 public class InitGame {
@@ -78,7 +82,21 @@ public class InitGame {
      * 여러 보드를 만들어 여러 경우의 수를 체크하는 것도 다른 곳에서 한다.
      */
     public void 착수() throws Exception {
-
+        Game game = init(GameMode.FIFTY_BY_FIFTY);
+        PointTree pointTree = GomokuUtil.getInstance().makeTree(game, new Point(0, 0), StoneColor.BLACK);
+        File file = new File("/Users/derren/dev/temp/Gomok/tree.txt");
+        FileWriter fw = new FileWriter(file);
+        pointTree.getPointNodeList().forEach(node -> {
+            node.getColorList().forEach(color -> {
+                try {
+                    fw.write(String.format("\t%s",color.name()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        });
+        fw.flush();
+        fw.close();
     }
 
 }

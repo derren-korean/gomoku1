@@ -30,4 +30,12 @@ public class Point {
     public boolean isEmpty() {
         return this.x == null || this.y == null;
     }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }
