@@ -20,7 +20,7 @@ public class Game {
         this.recoder = new ArrayList<>();
         if(mode==null) mode= main.java.model.GameMode.getDefault();
         this.gameMode = mode;
-        this.maxLineCount = mode.getLineCount()-1;
+        this.maxLineCount = mode.getLineCount();
     }
 
     public Integer getCurrentCount() {

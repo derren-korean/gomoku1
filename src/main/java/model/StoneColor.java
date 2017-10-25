@@ -1,11 +1,13 @@
 package main.java.model;
 
 public enum StoneColor {
-    BLACK("흑"),
-    WHITE("백"),
-    NONE("무");
+    BLACK("#000000"),
+    WHITE("#FFFFFF"),
+    NONE(null);
     private String color;
-    StoneColor(String color) {}
+    StoneColor(String color) {
+        this.color = color;
+    }
 
     public String getColor() {
         return color;

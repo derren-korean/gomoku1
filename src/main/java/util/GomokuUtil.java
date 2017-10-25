@@ -45,21 +45,15 @@ public class GomokuUtil {
         List<PointNode> pointNodeList = new ArrayList<>();
         for (Direction direction : getDirectionList()) {
             PointNode pointNode = new PointNode();
-            System.out.println(String.format("%s\t%s",point, direction.getLocation()));
             pointNode.setDirection(direction);
             List<StoneColor> stoneColorList = new ArrayList<>();
-//            if (game.getLocationColor(point) != StoneColor.NONE) {
-                stoneColorList.add(game.getLocationColor(point));
-                Point _point = calcPoint(point, direction.getPoint());
-                while (!isEndOfTheLine(game, _point, direction)) {
-//                    System.out.println(String.format("%s\t%s",_point, direction.getLocation()));
-                    stoneColorList.add(game.getLocationColor(_point));
-                    _point = calcPoint(_point, direction.getPoint());
-                }
-//            }
-            if (stoneColorList != null || !stoneColorList.isEmpty()) {
-                pointNode.setColorList(stoneColorList);
+            stoneColorList.add(game.getLocationColor(point));
+            Point _point = calcPoint(point, direction.getPoint());
+            while (!isEndOfTheLine(game, _point, direction)) {
+                stoneColorList.add(game.getLocationColor(_point));
+                _point = calcPoint(_point, direction.getPoint());
             }
+            pointNode.setColorList(stoneColorList);
             pointNodeList.add(pointNode);
         }
         pointTree.setPointNodeList(pointNodeList);
@@ -69,8 +63,8 @@ public class GomokuUtil {
     }
 
     private Point calcPoint(Point p1, Point p2) {
-        int x = p1.getX() - p2.getX();
-        int y = p1.getY() - p2.getY();
+        int x = p1.getX() + p2.getX();
+        int y = p1.getY() + p2.getY();
         return new Point(x,y);
     }
 

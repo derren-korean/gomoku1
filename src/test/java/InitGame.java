@@ -69,6 +69,7 @@ public class InitGame {
                 System.out.println(String.format("x:%d\ty:%d\tcolor:%s\tstoneCount:%d",x,y,stone.getColor(), stone.getStoneCount()));
             }
         }
+        fileOutByPointTree(GomokuUtil.getInstance().makeTree(game2, new Point(0, 0), StoneColor.BLACK));
     }
 
     private void stoneValidationCheck(Stone stone, StoneColor expColor, Integer expCount) {
@@ -84,6 +85,10 @@ public class InitGame {
     public void 착수() throws Exception {
         Game game = init(GameMode.FIFTY_BY_FIFTY);
         PointTree pointTree = GomokuUtil.getInstance().makeTree(game, new Point(0, 0), StoneColor.BLACK);
+        fileOutByPointTree(pointTree);
+    }
+
+    private void fileOutByPointTree(PointTree pointTree) throws IOException {
         File file = new File("/Users/derren/dev/temp/Gomok/tree.txt");
         FileWriter fw = new FileWriter(file);
         pointTree.getPointNodeList().forEach(node -> {
