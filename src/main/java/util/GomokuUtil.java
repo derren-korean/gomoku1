@@ -73,14 +73,37 @@ public class GomokuUtil {
     }
     // 최고점 = 다른 돌이 4개 연속.
     // 최저점 = 거리가 1 인 곳에 다른 돌.
-//    private int getScore(Game game, StoneColor color, Point point, Direction direction, int score, int count) {
-//        if (isEndOfTheLine(game, point, direction) || score < 0) return score;
-//
-//        // 비어있는지 색이 같은지 다른지에 따라 스코어를 매김
-//        score = getPointScore(game, point, color, count);
-//        return getScore(game, color, point, direction, score, ++count);
-//    }
+    private void setTreeScore(Game game, PointTree tree) {
+        Point point = tree.getPoint();
+        StoneColor color = tree.getColor();
+        List<PointNode> pointNodeList = tree.getPointNodeList();
+        if (pointNodeList == null || pointNodeList.isEmpty()) return;
+        tree.setScore(game.isOccupied(point) ? 0 : setPointScore(game, point, color, pointNodeList));
+    }
 
+    /**
+     * 1. NONE && mine 연속 4개 && 6번째 !mine
+     2. NONE && mate 연속 4개 && 6번째 !mate
+     3. NONE && mine 연속 3개 && 5번째 NONE && 6번째 !mine && (~direction 1번째 !mate || direction 2번째 !isEndOfTheLine && ~direction 2번째 !mate)
+     4. NONE && 6번째 !mine && 5번째 이하 !mate && mine 연속3개
+     5. NONE && 6번째 !mine && 5번째 이하 !mate && mine 3개
+     6. NONE && 6번째 !mine && 5번째 이하 !mate && mine 연속2개
+     7. NONE && 6번째 !mine && 5번째 이하 !mate && mine 2개
+     7.1. 7의 방향이 아닌 방향에서 3
+     7.2. 7의 방향이 아닌 방향에서 4
+     7.3. 7의 방향이 아닌 방향에서 5
+     7.4. 7의 방향이 아닌 방향에서 6
+     */
+    public int setPointScore (Game game, Point point, StoneColor color, List<PointNode> pointNodeList) {
+        for (PointNode pointNode : pointNodeList) {
+            Direction oppositeDirection = pointNode.getDirection().getOppositeDirection(); // 3번의 ~direction
+        }
+        Point _point = calcPoint(_point, driection.point);
+        while(isEmpty(_point)){
+            result++;
+            _point = calcPoint(_point, driection.point);
+        }
+    }
 //    private int getPointScore(Game game, Point point, StoneColor color, int count) {
 //        int score = 0;
 //        if (game.isOccupied(point)) {

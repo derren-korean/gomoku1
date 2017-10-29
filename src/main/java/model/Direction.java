@@ -1,5 +1,7 @@
 package main.java.model;
 
+import java.util.stream.Stream;
+
 public enum Direction {
 
     UP("상",0,1)
@@ -39,6 +41,12 @@ public enum Direction {
 
     public main.java.model.Point getPoint() {
         return new Point(getX(), getY());
+    }
+
+    public Direction getOppositeDirection() {
+        int _x = -this.x;
+        int _y = -this.y;
+        return Stream.of(Direction.values()).filter(dir -> dir.getX() == _x && dir.getY() == _y).findFirst().get();
     }
 }
 
